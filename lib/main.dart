@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:projet_x/traitement/ui/framework/CourierServiceFake.dart';
+import 'package:projet_x/traitement/ui/pages/couriersEnAttente/CouriersEnAttentePage.dart';
 
-import 'courriers/ui/pages/ListeCourrierPage.dart';
+import 'traitement/business/interactors/courrierInteractor.dart';
+import 'traitement/ui/framework/CourierServiceNetwork.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  // declarer implementation
+  var courierService=CourierServiceNetwork();
+  //declarer l'interactor
+  var courierInteractor=Courrierinteractor.build(courierService);
+
+  runApp( MyApp(courrierInteractor: courierInteractor,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  Courrierinteractor? courrierInteractor;
+   MyApp({super.key,  this.courrierInteractor});
 
   // This widget is the root of your application.
   @override
@@ -19,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home: const ListeCourrierPage(),
+      home: CouriersEnAttentePage(courrierInteractor: courrierInteractor,),
     );
   }
 }
