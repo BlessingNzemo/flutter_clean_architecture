@@ -1,8 +1,13 @@
 
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import '../service/CourrierService.dart';
 import 'RecupererListeCouriersUseCase.dart';
 import 'ValidateCourrierUseCase.dart';
+
+part "courrierInteractor.g.dart";
 
 class Courrierinteractor{
 
@@ -23,3 +28,9 @@ class Courrierinteractor{
   }
 
 }
+
+@Riverpod(keepAlive: true)
+Courrierinteractor courierInteractor(Ref ref){
+   throw Exception("Non encore implementaté");
+}
+
